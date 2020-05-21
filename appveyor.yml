@@ -24,5 +24,6 @@ install:
   - conan user # It creates the conan data directory
 
 test_script:
-  - dir C:\\Python37
-  - python3.exe build.py
+  - set PATH=%PATH%;%PYTHON%/Scripts/
+  - "%PYTHON%\\python.exe --version
+  - "%PYTHON%\\python.exe build.py
