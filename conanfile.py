@@ -24,6 +24,11 @@ class OatppConan(ConanFile):
     def _build_subfolder(self):
         return "build_subfolder"
 
+    def configure(self):
+        if self.settings.compiler == "Visual Studio":
+            if int(self.compiler.version) <= 12:
+                raise Exception("Visual Studio Compiler version must be > 12")
+
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
         os.rename("oatpp-{0}".format(self.version), self._source_subfolder)
