@@ -26,7 +26,7 @@ class OatppConan(ConanFile):
 
     def configure(self):
         if self.settings.compiler == "Visual Studio":
-            if int(self.settings.compiler.version) <= 12:
+            if int(str(self.settings.compiler.version)) <= 12:
                 raise Exception("Visual Studio Compiler version must be > 12")
 
     def source(self):
