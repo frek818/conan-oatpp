@@ -25,5 +25,5 @@ install:
 
 test_script:
   - set PATH=%PATH%;%PYTHON%/Scripts/
-  - "%PYTHON%\\python.exe --version
-  - "%PYTHON%\\python.exe build.py
+  - %PYTHON%\\python.exe --version
+  - %PYTHON%\\python.exe build.py
