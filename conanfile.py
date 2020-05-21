@@ -1,4 +1,5 @@
 from conans import ConanFile, CMake, tools
+from conan.errors import ConanInvalidConfiguration
 import os
 
 
@@ -27,7 +28,7 @@ class OatppConan(ConanFile):
     def configure(self):
         if self.settings.compiler == "Visual Studio":
             if int(str(self.settings.compiler.version)) <= 12:
-                raise Exception("Visual Studio Compiler version must be > 12")
+                raise ConanInvalidConfiguration("Visual Studio Compiler version must be > 12")
 
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
@@ -44,6 +45,8 @@ class OatppConan(ConanFile):
         self._cmake = CMake(self)
         self._cmake.definitions["OATPP_BUILD_TESTS"] = False
         self._cmake.definitions["BUILD_SHARED_LIBS"] = self.options.shared
+        if self.settings.os == "Windows":
+            self._cmake.definitions["CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS"] = True
         self._cmake.configure(build_folder=self._build_subfolder)
         return self._cmake
 
