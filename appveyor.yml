@@ -9,6 +9,8 @@ environment:
     CONAN_USERNAME: "user"
     CONAN_LOGIN_USERNAME: "user"
     CONAN_CHANNEL: "channel"
+    VERBOSE: "10":wq
+
     
     matrix:
         - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2015
@@ -31,6 +33,3 @@ build_script:
   - cmd: conan install .. oatpp/1.0.0@ -o oatpp:shared=True
   - cmd: conan create .. oatpp/1.0.0@
 
-test_script:
-  - cmd: cd bin
-  - cmd: test_package.exe
